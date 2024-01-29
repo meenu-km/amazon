@@ -1,0 +1,43 @@
+<div class="books" *ngIf="bookList.length">
+    <ng-container *ngFor="let book of bookList;let idx=index">
+        <div class="book" (click)="showBookDetails(idx)">
+            <div class="book-img-container">
+                <img class="book-img" src="{{book.imgurl}}" alt="book-img" />
+            </div>
+            <div class="book-data">
+                <div class="book-name">{{book.name}}</div>
+                <div class="book-rating">&#9733; {{book.rating}}</div>
+                <div class="book-price-container"><span class="book-price-symbol">&#8377;</span><span
+                        class="book-price">{{book.mrp - book.mrp * 0.25}}</span></div>
+            </div>
+        </div>
+        <section class="book-details" *ngIf="idx==currentBook">
+            <h3 class="book-title">{{book.name}}</h3>
+            <div class="book-rating">
+                <span class="rating-value">{{book.rating}}</span>
+                <span class="book-ratings">&#9733;</span>
+            </div>
+            <hr class="divider">
+            <div class="discount">
+                <span class="book-discount-value">-{{book.discount}}% </span> <span class="book-normal-price"> &#8377;
+                    {{book.mrp - book.mrp * 0.25}}</span>
+            </div>
+
+            <div class="mrp">
+                <span class="mrp-label">M.R.P.: </span><span class="book-mrp-price line-through">₹{{book.mrp}}</span>
+            </div>
+
+            <p class="tax">Inclusive of all taxes</p>
+            <hr class="divider">
+            <div class="buttons">
+                <button class="book-wishlist-button" type="button">Add to WishList</button>
+                <button class="book-cart-button" type="button">Add to Cart</button>
+            </div>
+
+            <div class="book-details-label">Book Summary</div>
+            <div>
+                {{book.summary}}
+            </div>
+        </section>
+    </ng-container>
+</div>
